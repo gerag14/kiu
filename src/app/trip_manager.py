@@ -14,11 +14,11 @@ class TripManager:
         try:
             self.session.begin()
             trip = Trip(
-                plane=new_trip.plane,
-                airport_from=new_trip.airport_from,
-                airport_to=new_trip.airport_to,
+                plane_id=new_trip.plane_id,
+                airport_from_id=new_trip.airport_from_id,
+                airport_to_id=new_trip.airport_to_id,
                 departure_date=new_trip.departure_date,
-                departure_arrive=new_trip.departure_arrive,
+                arrive_date=new_trip.arrive_date,
             )
 
             self.session.add(trip)
@@ -26,6 +26,8 @@ class TripManager:
                 self.create_trip_detail(trip_d)
 
             self.session.commit()
+            self.session.refresh(trip)
+            return trip
         except Exception as e:
             self.session.rollback()
             logging.exception(f"Error to add new trip: {e}")

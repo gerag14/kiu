@@ -7,7 +7,7 @@ from typing import List, Optional
 class TripDetailSchema:
     client_id: int
     package_quantity: int
-    package_price: float
+    package_price: Optional[float] = 10
 
 
 @dataclass
