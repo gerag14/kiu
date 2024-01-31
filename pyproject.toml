@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "kiu-challenge"
+version = "0.1.0"
+description = "Kiu Challenge"
+authors = ["Gerardo Gonzalez"]
+readme = "README.md"
+packages = [{include = "kiu_challenge"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+SQLite3-0611 = "^0.0.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
