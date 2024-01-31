@@ -1,16 +1,15 @@
 from sqlalchemy import Column, DateTime, Integer, create_engine, func
-from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
+from sqlalchemy.orm import declarative_base, declared_attr, scoped_session, sessionmaker
 
 from config import settings
 
 Base = declarative_base()
 
 
-def connect():
+def session():
     DATABASE_URL = settings.DATABASE_URL
-
     engine = create_engine(DATABASE_URL, echo=True)
-    Session = sessionmaker(bind=engine)
+    Session = scoped_session(sessionmaker(bind=engine))
     return Session()
 
 

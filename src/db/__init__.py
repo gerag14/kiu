@@ -1,1 +1,1 @@
-from .sqlite import Base, BaseModel, connect  # noqa
+from .sqlite import Base, BaseModel, session  # noqa

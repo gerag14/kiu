@@ -22,11 +22,12 @@ class TripManager:
             )
 
             self.session.add(trip)
-            for trip_d in trip.trip_detail:
-                self.create_trip_detail(trip_d)
-
             self.session.commit()
             self.session.refresh(trip)
+            for trip_d in new_trip.trip_detail:
+                self.create_trip_detail(trip_d, trip)
+
+            self.session.commit()
             return trip
         except Exception as e:
             self.session.rollback()
@@ -35,15 +36,15 @@ class TripManager:
             # Cerrar la sesión
             self.session.close()
 
-    def create_trip_detail(self, new_trip_detail: TripDetailSchema):
-        new_trip_d = Trip(
+    def create_trip_detail(self, new_trip_detail: TripDetailSchema, trip):
+        new_trip_d = TripDetail(
+            trip=trip,
             client_id=new_trip_detail.client_id,
             package_quantity=new_trip_detail.package_quantity,
             package_price=new_trip_detail.package_price,
         )
 
         self.session.add(new_trip_d)
-        return new_trip_d
 
     def get_total_per_day(self, date_str):
         totals_query = (
