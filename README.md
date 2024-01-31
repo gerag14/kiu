@@ -26,18 +26,22 @@ Se pide:
    cd kiu
    ```
 
-2. Run program
+2. Setup
+
+   ```bash
+   poetry install
+   poetry shell
+   ```
+   
+3. Run program
 
 - Local:
 
-  ```bash
-  ./execute run
-  ```
-
-- aws:
+  - Local:
 
   ```bash
-  ./execute run_aws
+  cd src
+  python main.py
   ```
 
 ## Tests
