@@ -1,20 +1,16 @@
 from models import Client
+from tests.utils import create_client_random
 
 
-def test_create_user(session):
-    client = Client(username="Username create test")
-    session.add(client)
-    session.commit()
+def test_create_client(session):
+    client = create_client_random(session)
+    assert client.username
 
 
 def test_get_user(session):
-    username = "Username get test"
+    client = create_client_random(session)
 
-    client = Client(username=username)
-    session.add(client)
-    session.commit()
-
-    client_get = session.query(Client).filter_by(username=username).first()
+    client_get = session.query(Client).filter_by(username=client.username).first()
 
     assert client_get.id
-    assert client_get.username == username
+    assert client_get.username == client.username

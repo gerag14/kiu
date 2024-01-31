@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+max-complexity = 10
+max-line-length = 125
+ignore =
+    # line break before binary operator
+    W503,
+    # whitespace before ':'
+    E203
+    S101
